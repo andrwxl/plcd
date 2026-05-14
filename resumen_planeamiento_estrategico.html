@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Planeamiento Estratégico — Resumen Examen</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0f14;
+    --surface: #161a23;
+    --surface2: #1e2330;
+    --border: #2a3045;
+    --text: #e8eaf0;
+    --muted: #7a8099;
+    --accent1: #4f8ef7;
+    --accent2: #f7c94f;
+    --accent3: #4ff7a8;
+    --accent4: #f74f7a;
+    --accent5: #bf4ff7;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(13,15,20,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 20px;
+    display: flex; gap: 6px; flex-wrap: wrap; align-items: center;
+  }
+  nav span { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 13px; color: var(--accent2); margin-right: 8px; }
+  nav a {
+    color: var(--muted); text-decoration: none; font-size: 12px; font-weight: 500;
+    padding: 4px 10px; border-radius: 20px; border: 1px solid transparent;
+    transition: all .2s;
+  }
+  nav a:hover { color: var(--text); border-color: var(--border); background: var(--surface); }
+
+  /* LAYOUT */
+  .container { max-width: 1100px; margin: 0 auto; padding: 32px 20px 80px; }
+
+  /* HERO */
+  .hero {
+    text-align: center; padding: 40px 0 36px;
+    border-bottom: 1px solid var(--border); margin-bottom: 40px;
+  }
+  .hero h1 { font-family: 'Syne', sans-serif; font-size: 2.2rem; font-weight: 800; letter-spacing: -0.5px; }
+  .hero h1 span { color: var(--accent2); }
+  .hero p { color: var(--muted); margin-top: 8px; font-size: 13px; }
+  .badges { display: flex; gap: 8px; justify-content: center; margin-top: 14px; flex-wrap: wrap; }
+  .badge {
+    font-size: 11px; font-weight: 600; padding: 3px 12px; border-radius: 20px;
+    border: 1px solid;
+  }
+
+  /* SECTION */
+  .section { margin-bottom: 44px; }
+  .section-header {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 18px; padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-num {
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 11px;
+    padding: 2px 8px; border-radius: 4px; flex-shrink: 0;
+  }
+  .section-title { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; }
+
+  /* CARDS GRID */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  @media(max-width:700px) { .grid2,.grid3 { grid-template-columns: 1fr; } }
+
+  .card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px 16px;
+  }
+  .card-title {
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 13px;
+    margin-bottom: 8px; display: flex; align-items: center; gap: 6px;
+  }
+  .card ul { padding-left: 16px; }
+  .card ul li { margin-bottom: 3px; font-size: 13px; color: var(--text); }
+  .card p { font-size: 13px; color: var(--text); }
+
+  /* TABLE */
+  .table-wrap { overflow-x: auto; border-radius: 10px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    background: var(--surface2); padding: 10px 14px;
+    text-align: left; font-family: 'Syne', sans-serif;
+    font-size: 12px; font-weight: 700; color: var(--muted);
+    text-transform: uppercase; letter-spacing: .05em;
+  }
+  td { padding: 9px 14px; font-size: 13px; border-top: 1px solid var(--border); }
+  tr:hover td { background: var(--surface); }
+
+  /* HIGHLIGHT BOX */
+  .hbox {
+    border-left: 3px solid; padding: 12px 16px;
+    border-radius: 0 8px 8px 0; background: var(--surface);
+    margin: 10px 0; font-size: 13px;
+  }
+
+  /* PILL */
+  .pill {
+    display: inline-block; font-size: 11px; font-weight: 600;
+    padding: 2px 9px; border-radius: 20px; margin: 2px 2px 2px 0;
+  }
+
+  /* STEP */
+  .steps { counter-reset: step; display: flex; flex-direction: column; gap: 8px; }
+  .step {
+    display: flex; gap: 12px; align-items: flex-start;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 8px; padding: 10px 14px;
+  }
+  .step-num {
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 13px;
+    min-width: 24px; height: 24px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .step p { font-size: 13px; }
+  .step strong { font-weight: 600; }
+
+  /* AUTHOR TAG */
+  .author { font-size: 11px; font-weight: 600; color: var(--accent2); margin-right: 4px; }
+
+  /* DIVIDER */
+  .divider { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+
+  /* COLOR HELPERS */
+  .c1 { color: var(--accent1); } .c2 { color: var(--accent2); }
+  .c3 { color: var(--accent3); } .c4 { color: var(--accent4); } .c5 { color: var(--accent5); }
+  .b1 { border-color: var(--accent1); } .b2 { border-color: var(--accent2); }
+  .b3 { border-color: var(--accent3); } .b4 { border-color: var(--accent4); } .b5 { border-color: var(--accent5); }
+  .bg1 { background: rgba(79,142,247,.15); color: var(--accent1); border-color: rgba(79,142,247,.3); }
+  .bg2 { background: rgba(247,201,79,.15); color: var(--accent2); border-color: rgba(247,201,79,.3); }
+  .bg3 { background: rgba(79,247,168,.15); color: var(--accent3); border-color: rgba(79,247,168,.3); }
+  .bg4 { background: rgba(247,79,122,.15); color: var(--accent4); border-color: rgba(247,79,122,.3); }
+  .bg5 { background: rgba(191,79,247,.15); color: var(--accent5); border-color: rgba(191,79,247,.3); }
+  .num1 { background: rgba(79,142,247,.2); color: var(--accent1); }
+  .num2 { background: rgba(247,201,79,.2); color: var(--accent2); }
+  .num3 { background: rgba(79,247,168,.2); color: var(--accent3); }
+  .num4 { background: rgba(247,79,122,.2); color: var(--accent4); }
+  .num5 { background: rgba(191,79,247,.2); color: var(--accent5); }
+</style>
+</head>
+<body>
+
+<nav>
+  <span>📚 PE</span>
+  <a href="#u1">Unidad 1</a>
+  <a href="#u2a">Propósito</a>
+  <a href="#u2b">Objetivos</a>
+  <a href="#u3">Estrategias</a>
+  <a href="#u4">Eval. Externa</a>
+  <a href="#u6">Eval. Interna</a>
+</nav>
+
+<div class="container">
+
+  <div class="hero">
+    <h1>Planeamiento <span>Estratégico</span></h1>
+    <p>Resumen completo de todas las unidades · Para examen de alternativas</p>
+    <div class="badges">
+      <span class="badge bg1">Unidad 1</span>
+      <span class="badge bg2">Unidad 2</span>
+      <span class="badge bg3">Unidad 3</span>
+      <span class="badge bg4">Unidad 4</span>
+      <span class="badge bg5">Unidad 6</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════ UNIDAD 1 -->
+  <div class="section" id="u1">
+    <div class="section-header">
+      <span class="section-num bg1">U1</span>
+      <span class="section-title">Fundamentos de la Administración Estratégica</span>
+    </div>
+
+    <div class="grid2" style="margin-bottom:12px">
+      <div class="card">
+        <div class="card-title"><span class="c1">▸</span> ¿Qué es Planeamiento?</div>
+        <p>Proceso de <strong>definir objetivos</strong> y establecer las acciones para alcanzarlos en el futuro. En pocas palabras: <strong>toma anticipada de decisiones</strong> que permite prever, organizar, coordinar y controlar.</p>
+        <hr class="divider">
+        <ul>
+          <li><span class="author">Fayol:</span> Examinar el futuro y elaborar un plan de acción.</li>
+          <li><span class="author">Chiavenato:</span> Técnica para minimizar la incertidumbre.</li>
+          <li><span class="author">Stoner:</span> Establecer metas y elegir medios para alcanzarlas.</li>
+          <li><span class="author">Drucker:</span> Adoptar decisiones empresariales sistemáticamente con conocimiento de su carácter futuro.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="c1">▸</span> ¿Qué es Estrategia?</div>
+        <p>Camino o conjunto de decisiones para <strong>lograr un objetivo y posicionarse en el entorno</strong>.</p>
+        <hr class="divider">
+        <ul>
+          <li><span class="author">Porter:</span> Creación de una posición única y valiosa. Es <strong>"huir" de la competencia</strong>.</li>
+          <li><span class="author">Mintzberg:</span> Conjunto consciente y deliberado de orientaciones hacia el futuro.</li>
+          <li><span class="author">Chiavenato:</span> Comportamiento global frente al entorno. Casi siempre significa <strong>cambio organizado</strong>.</li>
+        </ul>
+        <hr class="divider">
+        <p><strong>Objetivos</strong> → resultados a alcanzar &nbsp;|&nbsp; <strong>Estrategias</strong> → acciones para lograrlo &nbsp;|&nbsp; <strong>Tácticas</strong> → acciones específicas de <u>corto plazo</u> que ejecutan la estrategia.</p>
+      </div>
+    </div>
+
+    <div class="table-wrap" style="margin-bottom:12px">
+      <table>
+        <thead><tr><th>Nivel</th><th>Horizonte</th><th>Propósito</th><th>Responsable</th><th>Habilidades</th></tr></thead>
+        <tbody>
+          <tr><td><strong class="c1">Estratégico</strong></td><td>Largo plazo</td><td>Garantizar crecimiento y éxito de la empresa</td><td>Alta dirección (gerente general)</td><td>Conceptuales</td></tr>
+          <tr><td><strong class="c2">Táctico</strong></td><td>Mediano plazo</td><td>Organizar planes de cada área para cumplir la estrategia</td><td>Gerentes y jefes de área</td><td>Humanas</td></tr>
+          <tr><td><strong class="c3">Operativo</strong></td><td>Corto plazo</td><td>Ejecutar las tareas necesarias para cumplir los planes</td><td>Personal operativo</td><td>Técnicas</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid3" style="margin-bottom:12px">
+      <div class="card">
+        <div class="card-title"><span class="c2">▸</span> Liderazgo en Costos</div>
+        <ul>
+          <li>Mercado objetivo amplio</li>
+          <li>Sustento en <strong>bajos costos – economía de escala</strong></li>
+          <li>Reduce publicidad, gastos operativos y personal</li>
+          <li>⚠️ Riesgo: tentados a <strong>restar calidad</strong></li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="c2">▸</span> Diferenciación</div>
+        <ul>
+          <li>Aspecto <strong>único del producto</strong></li>
+          <li>Liderazgo por calidad, tecnología e innovación</li>
+          <li>Sacrifica cierta participación de mercado</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="c2">▸</span> Enfoque (Nicho)</div>
+        <ul>
+          <li>Segmentos <strong>específicos</strong> del mercado</li>
+          <li>Se basa en la especialización</li>
+          <li>Servicio más eficiente</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid3">
+      <div class="card">
+        <div class="card-title"><span class="c3">▸</span> Eficacia</div>
+        <p>Utiliza sus recursos para el logro de objetivos. <strong>(Cumplir)</strong></p>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="c3">▸</span> Eficiencia</div>
+        <p>Optimiza sus recursos para el logro de objetivos. <strong>(Optimizar)</strong></p>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="c3">▸</span> Efectividad</div>
+        <p>Lograr los objetivos usando eficientemente los recursos. <strong>(Medición)</strong></p>
+      </div>
+    </div>
+
+    <div class="hbox b1" style="margin-top:12px">
+      <strong>Modelo de Negocio:</strong> Mecanismo por el cual un negocio busca generar ingresos y beneficios. Tipos:
+      <span class="pill bg1">Suscripción</span><span class="pill bg1">% por Transacción</span><span class="pill bg1">Afiliación</span><span class="pill bg1">Publicidad</span><span class="pill bg1">Freemium</span><span class="pill bg1">Franquicias → paga regalías por marca</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════ UNIDAD 2A -->
+  <div class="section" id="u2a">
+    <div class="section-header">
+      <span class="section-num bg2">U2-A</span>
+      <span class="section-title">Propósito de una Organización</span>
+    </div>
+
+    <div class="grid2" style="margin-bottom:12px">
+      <div class="card">
+        <div class="card-title"><span class="c2">▸</span> Misión</div>
+        <p>Declaración de la <strong>"razón de ser"</strong> de la empresa. Responde: <em>¿cuál es nuestro negocio?</em></p>
+        <p style="margin-top:6px">Describe <strong>lo que hace, a quién sirve y cómo lo hace</strong>. Esencial para establecer objetivos y formular estrategias.</p>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="c2">▸</span> Visión</div>
+        <p>Lo que la organización busca <strong>ser o llegar a ser</strong> en el futuro. Responde: <em>¿qué queremos ser?</em></p>
+        <p style="margin-top:6px">Expresión de las aspiraciones. Se alcanza cuando se logran los <strong>objetivos de largo plazo</strong>.</p>
+      </div>
+    </div>
+
+    <div class="grid2" style="margin-bottom:12px">
+      <div class="card">
+        <div class="card-title"><span class="c2">▸</span> Valores</div>
+        <p>Determinan la <strong>forma en la cual se manifiesta la organización interna y externamente</strong>. Son los principios éticos y morales que guían las acciones.</p>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="c2">▸</span> Políticas</div>
+        <p><strong>Lineamientos o reglas generales</strong> que orientan la toma de decisiones (Peter Drucker). Directrices que establecen normas, procedimientos y comportamientos.</p>
+        <hr class="divider">
+        <p>Tipos: <span class="pill bg2">Recursos Humanos</span> <span class="pill bg2">Operativas</span> <span class="pill bg2">Generales</span></p>
+      </div>
+    </div>
+
+    <div class="hbox b2" style="margin-bottom:12px">
+      <strong>Drucker:</strong> El propósito de un negocio es <strong>crear clientes</strong>, por eso las empresas tienen dos funciones esenciales: <strong>marketing e innovación</strong>.
+    </div>
+
+    <div class="card" style="margin-bottom:12px">
+      <div class="card-title"><span class="c2">▸</span> Ciclo de Vida de las Industrias — 5 Etapas en orden</div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:4px">
+        <div style="flex:1; min-width:140px; background:var(--surface2); border-radius:8px; padding:10px; border-left:3px solid var(--accent1)">
+          <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:12px;color:var(--accent1)">1. EMBRIONARIA</div>
+          <p style="font-size:12px;margin-top:4px">Producto desconocido. Sin economías de escala significativas.</p>
+        </div>
+        <div style="flex:1; min-width:140px; background:var(--surface2); border-radius:8px; padding:10px; border-left:3px solid var(--accent3)">
+          <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:12px;color:var(--accent3)">2. CRECIMIENTO</div>
+          <p style="font-size:12px;margin-top:4px">Se crea demanda del producto.</p>
+        </div>
+        <div style="flex:1; min-width:140px; background:var(--surface2); border-radius:8px; padding:10px; border-left:3px solid var(--accent2)">
+          <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:12px;color:var(--accent2)">3. DESPLIEGUE</div>
+          <p style="font-size:12px;margin-top:4px">Demanda se acerca a los niveles de saturación.</p>
+        </div>
+        <div style="flex:1; min-width:140px; background:var(--surface2); border-radius:8px; padding:10px; border-left:3px solid var(--accent5)">
+          <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:12px;color:var(--accent5)">4. MADUREZ</div>
+          <p style="font-size:12px;margin-top:4px">Mercado saturado. Sin crecimiento.</p>
+        </div>
+        <div style="flex:1; min-width:140px; background:var(--surface2); border-radius:8px; padding:10px; border-left:3px solid var(--accent4)">
+          <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:12px;color:var(--accent4)">5. DECLIVE</div>
+          <p style="font-size:12px;margin-top:4px">Crecimiento negativo.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="hbox b3">
+      <strong>Prospectiva:</strong> Estudio sistemático de las <strong>tendencias futuras y su impacto en la organización</strong>. No predice el futuro, lo construye. Permite anticiparse al cambio antes de que sea evidente.
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════ UNIDAD 2B -->
+  <div class="section" id="u2b">
+    <div class="section-header">
+      <span class="section-num bg2">U2-B</span>
+      <span class="section-title">Objetivos Estratégicos y Específicos</span>
+    </div>
+
+    <div class="hbox b2" style="margin-bottom:12px">
+      <strong>Objetivo:</strong> Resultado que se desea alcanzar, guía las acciones y decisiones en un periodo determinado.
+    </div>
+
+    <div class="grid2" style="margin-bottom:12px">
+      <div class="card">
+        <div class="card-title"><span class="c2">▸</span> Formas de dirigir SIN objetivos (a EVITAR)</div>
+        <ul>
+          <li><strong>Gerencia por extrapolación:</strong> "Si no está roto, no es necesario arreglarlo." Seguir haciendo lo mismo.</li>
+          <li><strong>Gerencia por crisis:</strong> Reaccionar en vez de actuar. Los eventos dictan las decisiones.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="c2">▸</span> Características de los Objetivos (5)</div>
+        <ul>
+          <li><strong>Claro</strong> — entendido por todos.</li>
+          <li><strong>Mensurable</strong> — se puede medir.</li>
+          <li><strong>Real o alcanzable</strong> — dentro de las posibilidades.</li>
+          <li><strong>Motivador</strong> — suficientemente alentador.</li>
+          <li><strong>Coherente</strong> — relacionado con la Misión y Visión.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:12px">
+      <div class="card-title"><span class="c2">▸</span> Modelo SMART — George T. Doran</div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:4px">
+        <div class="pill bg1" style="padding:6px 14px;font-size:12px"><strong>S</strong> — Específico (Specific)</div>
+        <div class="pill bg2" style="padding:6px 14px;font-size:12px"><strong>M</strong> — Medible (Measurable)</div>
+        <div class="pill bg3" style="padding:6px 14px;font-size:12px"><strong>A</strong> — Alcanzable (Attainable)</div>
+        <div class="pill bg4" style="padding:6px 14px;font-size:12px"><strong>R</strong> — Relevante (Relevant)</div>
+        <div class="pill bg5" style="padding:6px 14px;font-size:12px"><strong>T</strong> — Tiempo (Time-bound)</div>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title"><span class="c2">▸</span> Objetivo Estratégico</div>
+        <p>Metas a <strong>largo plazo</strong>, específicas y medibles que traducen la visión y misión en targets concretos.</p>
+        <hr class="divider">
+        <p style="font-size:12px;font-weight:600;color:var(--muted);margin-bottom:4px">REQUISITOS:</p>
+        <ul>
+          <li>Compatible con la misión y visión.</li>
+          <li>Económicamente factible y técnicamente posible.</li>
+          <li>Especifica resultados esperados.</li>
+          <li>Enmarcado en el largo plazo.</li>
+          <li>Puede dividirse en objetivos específicos.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="c2">▸</span> Objetivo Específico</div>
+        <p>Resultado parcial del objetivo estratégico. Contesta <strong>5 preguntas clave</strong>:</p>
+        <ul style="margin-top:6px">
+          <li><strong>¿Qué?</strong> Situación que se desea alcanzar.</li>
+          <li><strong>¿Cuánto?</strong> Porción de la situación.</li>
+          <li><strong>¿Cuándo?</strong> Fecha esperada.</li>
+          <li><strong>¿Quién?</strong> Grupo de personas.</li>
+          <li><strong>¿Dónde?</strong> Área geográfica o lugar.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════ UNIDAD 3 -->
+  <div class="section" id="u3">
+    <div class="section-header">
+      <span class="section-num bg3">U3</span>
+      <span class="section-title">Estrategias</span>
+    </div>
+
+    <div class="grid2" style="margin-bottom:12px">
+      <div class="card">
+        <div class="card-title"><span class="c3">▸</span> Origen y definición</div>
+        <p>Del griego <strong>estrategeia / estrategos</strong> = "arte del general en la guerra".</p>
+        <p style="margin-top:6px"><strong>stratos</strong> = ejército &nbsp;+&nbsp; <strong>agein</strong> = conducir/guiar</p>
+        <hr class="divider">
+        <p>Es el <strong>"camino que lleva a un objetivo"</strong>. Incluye métodos, procedimientos y circunstancias del camino — <u>pero no el objetivo en sí</u>.</p>
+        <hr class="divider">
+        <p><strong>Principio de divergencia:</strong> estrategias distintas pueden llevar al mismo objetivo, y las mismas estrategias a objetivos distintos.</p>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="c3">▸</span> Niveles de Estrategia</div>
+        <ul>
+          <li><strong>Corporativo:</strong> ¿En qué negocios debemos participar? → Usa Matriz BCG.</li>
+          <li><strong>De negocios:</strong> ¿Cómo competir en cada negocio?</li>
+          <li><strong>Funcional:</strong> ¿Cómo respaldar la estrategia de negocios?</li>
+        </ul>
+        <hr class="divider">
+        <p><strong>Unidad Estratégica de Negocios (UEN):</strong> Un solo negocio o colección de negocios independientes con estrategia propia.</p>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>#</th><th>Tipo</th><th>Subtipos</th></tr></thead>
+        <tbody>
+          <tr><td class="c3">1</td><td><strong>Genéricas de Porter</strong></td><td>Liderazgo en costos · Diferenciación · Enfoque</td></tr>
+          <tr><td class="c3">2</td><td><strong>De integración</strong></td><td>Hacia adelante · Hacia atrás · Horizontal</td></tr>
+          <tr><td class="c3">3</td><td><strong>Intensivas</strong></td><td>Penetración de mercado · Desarrollo de mercado · Desarrollo de producto</td></tr>
+          <tr><td class="c3">4</td><td><strong>De diversificación</strong></td><td>Concéntrica · Horizontal · De conglomerados</td></tr>
+          <tr><td class="c3">5</td><td><strong>De supervivencia</strong></td><td>Recorte de gastos · Enajenación · Liquidación</td></tr>
+          <tr><td class="c3">6</td><td><strong>Innovadoras</strong></td><td>Ofensiva · Defensiva · Imitativa · Oportunista · Dependiente · Tradicional</td></tr>
+          <tr><td class="c3">7</td><td><strong>Competitivas</strong></td><td>Empresa líder · Retadora · Seguidora · Especializada</td></tr>
+          <tr><td class="c3">8</td><td><strong>Internacionales</strong></td><td>Global · Transnacional · Internacional · Multidoméstica</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════ UNIDAD 4 -->
+  <div class="section" id="u4">
+    <div class="section-header">
+      <span class="section-num bg4">U4</span>
+      <span class="section-title">Análisis y Evaluación Externa</span>
+    </div>
+
+    <div class="hbox b4" style="margin-bottom:12px">
+      La evaluación externa revela <strong>Oportunidades y Amenazas</strong>. Los gerentes formulan estrategias para <strong>sacar ventaja de las oportunidades</strong> y <strong>evitar/reducir el impacto de las amenazas</strong>.
+    </div>
+
+    <div class="card" style="margin-bottom:12px">
+      <div class="card-title"><span class="c4">▸</span> Las 5 Fuerzas Externas Clave</div>
+      <div class="grid3" style="margin-top:8px">
+        <div style="background:var(--surface2);padding:10px;border-radius:8px">
+          <div style="color:var(--accent4);font-weight:700;font-size:12px;margin-bottom:4px">1. ECONÓMICAS</div>
+          <p style="font-size:12px">Inflación, tasas de interés, PBI, desempleo, bolsa de valores, importación/exportación, políticas monetarias y fiscales.</p>
+        </div>
+        <div style="background:var(--surface2);padding:10px;border-radius:8px">
+          <div style="color:var(--accent4);font-weight:700;font-size:12px;margin-bottom:4px">2. SOCIALES / DEMOGRÁFICAS</div>
+          <p style="font-size:12px">Natalidad, migración, esperanza de vida, hábitos de compra, nivel educativo, grupos de interés.</p>
+        </div>
+        <div style="background:var(--surface2);padding:10px;border-radius:8px">
+          <div style="color:var(--accent4);font-weight:700;font-size:12px;margin-bottom:4px">3. POLÍTICAS / LEGALES</div>
+          <p style="font-size:12px">Leyes antimonopolio, aranceles, patentes, lobbying, subsidios, reglamentación gubernamental.</p>
+        </div>
+        <div style="background:var(--surface2);padding:10px;border-radius:8px">
+          <div style="color:var(--accent4);font-weight:700;font-size:12px;margin-bottom:4px">4. TECNOLÓGICAS</div>
+          <p style="font-size:12px">Internet (altera ciclos de vida, rapidez de distribución, elimina límites geográficos), comunicaciones, fibras ópticas.</p>
+        </div>
+        <div style="background:var(--surface2);padding:10px;border-radius:8px">
+          <div style="color:var(--accent4);font-weight:700;font-size:12px;margin-bottom:4px">5. COMPETITIVAS</div>
+          <p style="font-size:12px">Modelo de las 5 Fuerzas de Porter. Participación de mercado, calidad, innovación.</p>
+        </div>
+        <div style="background:var(--surface2);padding:10px;border-radius:8px">
+          <div style="color:var(--accent4);font-weight:700;font-size:12px;margin-bottom:4px">+ ECOLÓGICAS</div>
+          <p style="font-size:12px">Responsabilidad social, reciclaje, manejo de desechos, contaminación, deterioro del ozono.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:12px">
+      <div class="card-title"><span class="c4">▸</span> 5 Fuerzas de Porter</div>
+      <div class="grid2" style="margin-top:8px">
+        <div style="background:var(--surface2);padding:10px;border-radius:8px;border-left:3px solid var(--accent4)">
+          <div style="font-weight:700;font-size:12px;margin-bottom:4px">1. Amenaza de Competidores Potenciales</div>
+          <p style="font-size:12px">Barreras de entrada: economías de escala, patentes, fuerza de marca, necesidades de capital, acceso a canales de distribución, política gubernamental, diferenciación de productos.</p>
+        </div>
+        <div style="background:var(--surface2);padding:10px;border-radius:8px;border-left:3px solid var(--accent4)">
+          <div style="font-weight:700;font-size:12px;margin-bottom:4px">2. Poder de Negociación de los Clientes</div>
+          <p style="font-size:12px">El cliente tiene poder cuando: compra en cantidad, gran oferta del producto, <strong>costos de cambio bajos</strong>, puede ser competidor potencial.</p>
+        </div>
+        <div style="background:var(--surface2);padding:10px;border-radius:8px;border-left:3px solid var(--accent4)">
+          <div style="font-weight:700;font-size:12px;margin-bottom:4px">3. Amenaza de Productos Sustitutos</div>
+          <p style="font-size:12px">Misma función, <strong>tecnología diferente</strong>. Relevantes cuando tienen las mismas cualidades y los costos de cambio son bajos.</p>
+        </div>
+        <div style="background:var(--surface2);padding:10px;border-radius:8px;border-left:3px solid var(--accent4)">
+          <div style="font-weight:700;font-size:12px;margin-bottom:4px">4. Poder de Negociación de los Proveedores</div>
+          <p style="font-size:12px">El proveedor tiene poder cuando: pocos proveedores, producto importante para el cliente, sin sustitutos, <strong>costos de transferencia altos</strong> para el cliente.</p>
+        </div>
+        <div style="background:var(--surface2);padding:10px;border-radius:8px;border-left:3px solid var(--accent4); grid-column: span 2">
+          <div style="font-weight:700;font-size:12px;margin-bottom:4px">5. Rivalidad entre Competidores Actuales</div>
+          <p style="font-size:12px">Lucha por posiciones entre actuales competidores. Permite diseñar una estrategia competitiva conociendo fortalezas y debilidades frente a la competencia.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title"><span class="c4">▸</span> Matriz EFE — 5 Pasos</div>
+        <div class="steps">
+          <div class="step"><span class="step-num num4">1</span><p>Listar <strong>10-20 factores externos clave</strong> (oportunidades + amenazas).</p></div>
+          <div class="step"><span class="step-num num4">2</span><p>Asignar <strong>peso de 0.0 a 1.0</strong>. Mayor importancia = mayor peso. <strong>Suma total = 1.0</strong>.</p></div>
+          <div class="step"><span class="step-num num4">3</span><p>Asignar <strong>valor de 1 a 4</strong>: 4=Superior · 3=Encima del promedio · 2=Promedio · 1=Pobre.</p></div>
+          <div class="step"><span class="step-num num4">4</span><p><strong>Peso × Valor</strong> = puntaje ponderado.</p></div>
+          <div class="step"><span class="step-num num4">5</span><p><strong>Sumar puntajes</strong> → total. Máximo: 4.0 · Promedio: <strong>2.5</strong> · Mínimo: 1.0.</p></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="c4">▸</span> Matriz MPC — Perfil Competitivo</div>
+        <p>Identifica <strong>principales competidores</strong> y sus fortalezas/debilidades respecto a la empresa modelo.</p>
+        <hr class="divider">
+        <p style="font-weight:600;font-size:12px;color:var(--muted);margin-bottom:6px">VALORES EN MPC:</p>
+        <ul>
+          <li><span class="pill bg3">4</span> Fortaleza mayor</li>
+          <li><span class="pill bg1">3</span> Fortaleza menor</li>
+          <li><span class="pill bg2">2</span> Debilidad menor</li>
+          <li><span class="pill bg4">1</span> Debilidad mayor</li>
+        </ul>
+        <hr class="divider">
+        <p><strong>Factores Determinantes de Éxito (FDE):</strong> Factores que afectan a <u>todos</u> los competidores y son críticos para el éxito en el sector.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════ UNIDAD 6 -->
+  <div class="section" id="u6">
+    <div class="section-header">
+      <span class="section-num bg5">U6</span>
+      <span class="section-title">Análisis y Evaluación Interna (EFI)</span>
+    </div>
+
+    <div class="hbox b5" style="margin-bottom:12px">
+      La evaluación interna audita las áreas funcionales del negocio para identificar <strong>Fortalezas y Debilidades</strong>. Busca capitalizar las fortalezas y vencer las debilidades para construir <strong>ventaja competitiva</strong>.
+    </div>
+
+    <div class="card" style="margin-bottom:12px">
+      <div class="card-title"><span class="c5">▸</span> Competencias Distintivas</div>
+      <p>Fortalezas de una compañía que <strong>no pueden fácilmente igualarse o ser imitadas por la competencia</strong>. Construir ventajas competitivas involucra sacar ventaja de ellas. Las estrategias también buscan transformar debilidades en fortalezas.</p>
+    </div>
+
+    <div class="card" style="margin-bottom:12px">
+      <div class="card-title"><span class="c5">▸</span> Las 6 Áreas Funcionales del negocio (para recopilar información)</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px">
+        <span class="pill bg5">Administración / Gerencia</span>
+        <span class="pill bg5">Marketing</span>
+        <span class="pill bg5">Finanzas / Contabilidad</span>
+        <span class="pill bg5">Producción / Operaciones</span>
+        <span class="pill bg5">Investigación & Desarrollo</span>
+        <span class="pill bg5">Sistemas de Información</span>
+      </div>
+    </div>
+
+    <div class="grid2" style="margin-bottom:12px">
+      <div class="card">
+        <div class="card-title"><span class="c5">▸</span> Administración / Gerencia — 5 funciones</div>
+        <ul>
+          <li><strong>Planeamiento</strong> → Formulación estratégica (pronósticos, objetivos, políticas, metas).</li>
+          <li><strong>Organización</strong> → Implementación estratégica (diseño organizacional, coordinación, control).</li>
+          <li><strong>Dirección</strong> → Implementación estratégica (motivación, comunicación, grupos de trabajo).</li>
+          <li><strong>Coordinación</strong> → Sueldos, beneficios, contrataciones, entrenamientos, relaciones laborales.</li>
+          <li><strong>Control</strong> → Evaluación estratégica (control de calidad, financiero, ventas, inventarios).</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="c5">▸</span> Marketing — 7 funciones</div>
+        <ul>
+          <li><strong>Análisis del cliente</strong> — perfiles y segmentación.</li>
+          <li><strong>Ventas de productos/servicios</strong> — publicidad, promoción, fuerza de ventas.</li>
+          <li><strong>Planeamiento de productos</strong> — posicionamiento de marca, calidad, garantías.</li>
+          <li><strong>Definición de precios</strong> — descuentos, crédito, condiciones de venta.</li>
+          <li><strong>Distribución</strong> — canales, transporte, inventario, zonas de ventas.</li>
+          <li><strong>Investigación de mercados</strong> — recopilación y análisis de datos.</li>
+          <li><strong>Análisis de oportunidades</strong>.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid2" style="margin-bottom:12px">
+      <div class="card">
+        <div class="card-title"><span class="c5">▸</span> Finanzas / Contabilidad</div>
+        <p>Tres tipos de decisiones:</p>
+        <ul style="margin-top:6px">
+          <li><strong>Decisiones de inversión</strong> (Presupuesto de capital)</li>
+          <li><strong>Decisiones financieras</strong></li>
+          <li><strong>Decisiones de dividendos</strong></li>
+        </ul>
+        <hr class="divider">
+        <p style="font-size:12px">Índices financieros clave:</p>
+        <ul style="margin-top:4px">
+          <li><strong>Liquidez:</strong> capacidad de satisfacer obligaciones de corto plazo.</li>
+          <li><strong>Beneficio/Rentabilidad:</strong> retorno en ventas e inversión.</li>
+          <li><strong>Crecimiento:</strong> capacidad de mantener capacidad económica.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="c5">▸</span> Producción / Operaciones — 5 áreas</div>
+        <ul>
+          <li><strong>Proceso:</strong> diseño de facilidades, tecnología, control del proceso.</li>
+          <li><strong>Capacidad:</strong> pronósticos, programación, planeamiento agregado.</li>
+          <li><strong>Inventario:</strong> materia prima, trabajo en proceso, productos terminados.</li>
+          <li><strong>Mano de obra:</strong> diseño del trabajo, evaluación, motivación, estándares.</li>
+          <li><strong>Calidad:</strong> control, muestreo, aseguramiento de la calidad.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid2" style="margin-bottom:12px">
+      <div class="card">
+        <div class="card-title"><span class="c5">▸</span> Investigación & Desarrollo</div>
+        <ul>
+          <li>Desarrollar <strong>nuevos productos antes que la competencia</strong>.</li>
+          <li>Mejorar la calidad del producto.</li>
+          <li>Mejorar procesos de fabricación para <strong>reducir costos</strong>.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="c5">▸</span> Sistemas de Información</div>
+        <ul>
+          <li>Seguridad del sistema.</li>
+          <li>Uso fácil y amigable.</li>
+          <li>Comercio electrónico.</li>
+          <li>Actualización regular de datos.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="c5">▸</span> Matriz EFI — 5 Pasos (igual estructura que EFE pero mide fortalezas y debilidades)</div>
+      <div class="grid2" style="margin-top:8px">
+        <div class="steps">
+          <div class="step"><span class="step-num num5">1</span><p>Listar <strong>10-20 factores internos clave</strong> (fortalezas + debilidades).</p></div>
+          <div class="step"><span class="step-num num5">2</span><p>Asignar <strong>peso de 0.0 a 1.0</strong>. Suma total = <strong>1.0</strong>.</p></div>
+          <div class="step"><span class="step-num num5">3</span><p>Asignar <strong>valor de 1 a 4</strong>: 4=Fortaleza Mayor · 3=Fortaleza Menor · 2=Debilidad Menor · 1=Debilidad Mayor.</p></div>
+          <div class="step"><span class="step-num num5">4</span><p><strong>Peso × Valor</strong> = puntaje ponderado.</p></div>
+          <div class="step"><span class="step-num num5">5</span><p>Sumar puntajes. Máximo: <strong>4.0</strong> · Promedio: <strong>2.5</strong> · Mínimo: <strong>1.0</strong>.</p></div>
+        </div>
+        <div>
+          <div class="hbox b5" style="margin-bottom:10px">
+            <strong>Valores:</strong><br>
+            <span class="pill bg3">4</span> Fortaleza Mayor &nbsp;
+            <span class="pill bg1">3</span> Fortaleza Menor<br style="margin:4px 0">
+            <span class="pill bg2">2</span> Debilidad Menor &nbsp;
+            <span class="pill bg4">1</span> Debilidad Mayor
+          </div>
+          <div class="hbox b5">
+            <strong>Ejemplo PPT — Circus Circus:</strong><br>
+            Puntaje total = <strong>2.75</strong> → indica que la empresa está <strong>sobre el promedio</strong> en el uso de sus fortalezas internas.
+          </div>
+          <div class="hbox b4" style="margin-top:10px">
+            ⚠️ <strong>EFE vs EFI en los valores:</strong><br>
+            En <u>EFE</u>: 4=respuesta superior de la estrategia.<br>
+            En <u>EFI</u>: 4=fortaleza mayor, 1=debilidad mayor.<br>
+            ¡Cuidado con confundirlos en el examen!
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MEGA RESUMEN -->
+  <div style="background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:20px;margin-top:10px">
+    <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:14px;color:var(--accent2);margin-bottom:14px">⚡ TABLA FLASH — Lo más probable en el examen</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Concepto</th><th>Clave para recordar</th></tr></thead>
+        <tbody>
+          <tr><td>Estrategia según Porter</td><td><strong>"Huir" de la competencia</strong> — crear posición única y valiosa</td></tr>
+          <tr><td>Misión</td><td>¿Cuál es nuestro negocio? Razón de SER</td></tr>
+          <tr><td>Visión</td><td>¿Qué queremos SER? Aspiración futura</td></tr>
+          <tr><td>Drucker</td><td>Propósito = crear clientes → marketing + innovación</td></tr>
+          <tr><td>SMART "A"</td><td>Alcanzable (Attainable) — NO "ambicioso"</td></tr>
+          <tr><td>Franquicia</td><td>Paga regalías por uso de marca (no es afiliación)</td></tr>
+          <tr><td>Ciclo de vida orden</td><td>Embrionaria → Crecimiento → Despliegue → Madurez → Declive</td></tr>
+          <tr><td>Nivel Estratégico</td><td>Largo plazo · Alta dirección · Habilidades conceptuales</td></tr>
+          <tr><td>Nivel Operativo</td><td>Corto plazo · Personal operativo · Habilidades técnicas</td></tr>
+          <tr><td>Estrategias intensivas</td><td>Penetración / Desarrollo de mercado / Desarrollo de producto</td></tr>
+          <tr><td>Estrategias de supervivencia</td><td>Recorte de gastos · Enajenación · Liquidación</td></tr>
+          <tr><td>EFE/EFI — peso</td><td>0.0 a 1.0 · Suma = 1.0 · Mayor importancia = mayor peso</td></tr>
+          <tr><td>EFE — valor</td><td>4=superior · 3=encima promedio · 2=promedio · 1=pobre (respuesta de la estrategia)</td></tr>
+          <tr><td>EFI — valor</td><td>4=fortaleza mayor · 3=fortaleza menor · 2=debilidad menor · 1=debilidad mayor</td></tr>
+          <tr><td>EFE/EFI — promedio</td><td><strong>2.5</strong></td></tr>
+          <tr><td>MPC valores</td><td>4=fortaleza mayor · 1=debilidad mayor (igual que EFI)</td></tr>
+          <tr><td>Competencias distintivas</td><td>Fortalezas que NO pueden ser imitadas fácilmente por la competencia</td></tr>
+          <tr><td>Gerencia por extrapolación</td><td>"Si no está roto, no arregles" — evitar</td></tr>
+          <tr><td>Prospectiva</td><td>Estudio sistemático de tendencias futuras y su impacto en la organización</td></tr>
+          <tr><td>Producto sustituto</td><td>Misma función, <strong>tecnología diferente</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Highlight nav link on scroll
+  const sections = document.querySelectorAll('.section');
+  const navLinks = document.querySelectorAll('nav a');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(a => a.style.color = '');
+        const active = document.querySelector(`nav a[href="#${e.target.id}"]`);
+        if (active) { active.style.color = 'var(--accent2)'; active.style.borderColor = 'var(--accent2)'; }
+      }
+    });
+  }, { threshold: 0.3 });
+  sections.forEach(s => observer.observe(s));
+
+  // Click to expand/collapse cards on mobile
+  document.querySelectorAll('.card-title').forEach(title => {
+    title.style.cursor = 'pointer';
+    title.addEventListener('click', () => {
+      const card = title.closest('.card');
+      const siblings = Array.from(card.children).filter(el => el !== title);
+      const hidden = siblings[0]?.style.display === 'none';
+      siblings.forEach(el => el.style.display = hidden ? '' : 'none');
+    });
+  });
+</script>
+</body>
+</html>
